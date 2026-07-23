@@ -1,5 +1,73 @@
 {
-  "contentVersion": "1.0.0.0",
+  "resources": [
+    {
+      "properties": {
+        "sku": {
+          "name": "Basic"
+        }
+      },
+      "type": "Microsoft.Automation/automationAccounts",
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "apiVersion": "2023-11-01",
+      "location": "[parameters('location')]",
+      "name": "[parameters('automationAccountName')]"
+    },
+    {
+      "properties": {
+        "runbookType": "[variables('runbookType')]",
+        "logVerbose": "[variables('logVerbose')]",
+        "publishContentLink": {
+          "uri": "[variables('scriptUri')]"
+        },
+        "logProgress": "[variables('logProgress')]",
+        "description": "[parameters('runbookDescription')]"
+      },
+      "type": "Microsoft.Automation/automationAccounts/runbooks",
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]"
+      ],
+      "apiVersion": "2023-11-01",
+      "location": "[parameters('location')]",
+      "name": "[concat(parameters('automationAccountName'), '/', parameters('runbookName'))]"
+    }
+  ],
+  "variables": {
+    "runbookType": "PowerShell",
+    "logVerbose": false,
+    "logProgress": false,
+    "scriptUri": "https://raw.githubusercontent.com/dtewales/IntuneAutomation/main/scripts/monitoring/check-bitlocker-keys.ps1"
+  },
+  "parameters": {
+    "location": {
+      "metadata": {
+        "description": "Location for the runbook deployment"
+      },
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]"
+    },
+    "runbookName": {
+      "metadata": {
+        "description": "Name for the new runbook (will be created in the Automation Account)"
+      },
+      "type": "string",
+      "defaultValue": "check-bitlocker-keys"
+    },
+    "automationAccountName": {
+      "metadata": {
+        "description": "Name of the Azure Automation Account. If it does not exist in the selected resource group, it will be created with a system-assigned managed identity."
+      },
+      "type": "string"
+    },
+    "runbookDescription": {
+      "metadata": {
+        "description": "Description of the runbook"
+      },
+      "type": "string",
+      "defaultValue": "This script connects to Microsoft Graph API, retrieves all Windows devices from Intune,"
+    }
+  },
   "outputs": {
     "deploymentInstructions": {
       "value": "Runbook created and published successfully! If the runbook content appears empty, manually import from the source URL provided in the outputs. Next steps: 1) Assign required Microsoft Graph permissions to the Automation Account's system-assigned Managed Identity, 2) Test the runbook.",
@@ -9,12 +77,12 @@
       "value": "[variables('scriptUri')]",
       "type": "string"
     },
-    "runbookName": {
-      "value": "[parameters('runbookName')]",
-      "type": "string"
-    },
     "runbookUrl": {
       "value": "[concat('https://portal.azure.com/#@', subscription().tenantId, '/resource/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Automation/automationAccounts/', parameters('automationAccountName'), '/runbooks/', parameters('runbookName'))]",
+      "type": "string"
+    },
+    "runbookName": {
+      "value": "[parameters('runbookName')]",
       "type": "string"
     },
     "automationAccountName": {
@@ -22,74 +90,6 @@
       "type": "string"
     }
   },
-  "resources": [
-    {
-      "location": "[parameters('location')]",
-      "name": "[parameters('automationAccountName')]",
-      "identity": {
-        "type": "SystemAssigned"
-      },
-      "apiVersion": "2023-11-01",
-      "type": "Microsoft.Automation/automationAccounts",
-      "properties": {
-        "sku": {
-          "name": "Basic"
-        }
-      }
-    },
-    {
-      "location": "[parameters('location')]",
-      "name": "[concat(parameters('automationAccountName'), '/', parameters('runbookName'))]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]"
-      ],
-      "apiVersion": "2023-11-01",
-      "type": "Microsoft.Automation/automationAccounts/runbooks",
-      "properties": {
-        "runbookType": "[variables('runbookType')]",
-        "logProgress": "[variables('logProgress')]",
-        "logVerbose": "[variables('logVerbose')]",
-        "description": "[parameters('runbookDescription')]",
-        "publishContentLink": {
-          "uri": "[variables('scriptUri')]"
-        }
-      }
-    }
-  ],
-  "variables": {
-    "runbookType": "PowerShell",
-    "logProgress": false,
-    "logVerbose": false,
-    "scriptUri": "https://raw.githubusercontent.com/dtewales/IntuneAutomation/main/scripts/monitoring/check-bitlocker-keys.ps1"
-  },
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-  "parameters": {
-    "runbookDescription": {
-      "type": "string",
-      "defaultValue": "This script connects to Microsoft Graph API, retrieves all Windows devices from Intune,",
-      "metadata": {
-        "description": "Description of the runbook"
-      }
-    },
-    "location": {
-      "type": "string",
-      "defaultValue": "[resourceGroup().location]",
-      "metadata": {
-        "description": "Location for the runbook deployment"
-      }
-    },
-    "runbookName": {
-      "type": "string",
-      "defaultValue": "check-bitlocker-keys",
-      "metadata": {
-        "description": "Name for the new runbook (will be created in the Automation Account)"
-      }
-    },
-    "automationAccountName": {
-      "metadata": {
-        "description": "Name of the Azure Automation Account. If it does not exist in the selected resource group, it will be created with a system-assigned managed identity."
-      },
-      "type": "string"
-    }
-  }
+  "contentVersion": "1.0.0.0",
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#"
 }
