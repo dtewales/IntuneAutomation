@@ -1,14 +1,14 @@
 {
-  "generated": "2026-08-17T02:51:21Z",
+  "generated": "2026-08-18T02:45:53Z",
   "scripts": {
     "detect-disk-cleanup-needed.ps1": {
       "path": "scripts/remediation/disk-cleanup/detect-disk-cleanup-needed.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -35,11 +35,11 @@
     "remediate-disk-cleanup.ps1": {
       "path": "scripts/remediation/disk-cleanup/remediate-disk-cleanup.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -66,11 +66,11 @@
     "detect-antivirus-definitions-outdated.ps1": {
       "path": "scripts/remediation/antivirus-definition-updates/detect-antivirus-definitions-outdated.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -97,11 +97,11 @@
     "remediate-antivirus-definitions.ps1": {
       "path": "scripts/remediation/antivirus-definition-updates/remediate-antivirus-definitions.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -128,11 +128,11 @@
     "add-devices-to-groups-from-csv.ps1": {
       "path": "scripts/devices/add-devices-to-groups-from-csv.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -156,9 +156,9 @@
               "line": 610
             }
           ],
+          "note": "Interactive patterns present but the script has environment detection.",
           "status": "pass",
-          "guarded": true,
-          "note": "Interactive patterns present but the script has environment detection."
+          "guarded": true
         },
         "moduleDeps": {
           "unknown": [],
@@ -171,11 +171,11 @@
     "cleanup-autopilot-devices.ps1": {
       "path": "scripts/devices/cleanup-autopilot-devices.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -199,9 +199,9 @@
               "line": 485
             }
           ],
+          "note": "Interactive patterns present but the script has environment detection.",
           "status": "pass",
-          "guarded": true,
-          "note": "Interactive patterns present but the script has environment detection."
+          "guarded": true
         },
         "moduleDeps": {
           "unknown": [],
@@ -216,11 +216,11 @@
     "create-app-based-groups.ps1": {
       "path": "scripts/devices/create-app-based-groups.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -239,9 +239,9 @@
               "line": 123
             }
           ],
+          "note": "Interactive patterns present but the script has environment detection.",
           "status": "pass",
-          "guarded": true,
-          "note": "Interactive patterns present but the script has environment detection."
+          "guarded": true
         },
         "moduleDeps": {
           "unknown": [],
@@ -254,11 +254,11 @@
     "get-devices-by-scopetag.ps1": {
       "path": "scripts/devices/get-devices-by-scopetag.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -277,9 +277,9 @@
               "line": 142
             }
           ],
+          "note": "Interactive patterns present but the script has environment detection.",
           "status": "pass",
-          "guarded": true,
-          "note": "Interactive patterns present but the script has environment detection."
+          "guarded": true
         },
         "moduleDeps": {
           "unknown": [],
@@ -294,11 +294,11 @@
     "get-stale-devices.ps1": {
       "path": "scripts/devices/get-stale-devices.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -317,9 +317,9 @@
               "line": 134
             }
           ],
+          "note": "Interactive patterns present but the script has environment detection.",
           "status": "pass",
-          "guarded": true,
-          "note": "Interactive patterns present but the script has environment detection."
+          "guarded": true
         },
         "moduleDeps": {
           "unknown": [],
@@ -334,11 +334,11 @@
     "get-app-installation-status-report.ps1": {
       "path": "scripts/apps/get-app-installation-status-report.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -357,9 +357,9 @@
               "line": 131
             }
           ],
+          "note": "Interactive patterns present but the script has environment detection.",
           "status": "pass",
-          "guarded": true,
-          "note": "Interactive patterns present but the script has environment detection."
+          "guarded": true
         },
         "moduleDeps": {
           "unknown": [],
@@ -374,11 +374,11 @@
     "get-application-inventory-report.ps1": {
       "path": "scripts/apps/get-application-inventory-report.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -397,9 +397,9 @@
               "line": 129
             }
           ],
+          "note": "Interactive patterns present but the script has environment detection.",
           "status": "pass",
-          "guarded": true,
-          "note": "Interactive patterns present but the script has environment detection."
+          "guarded": true
         },
         "moduleDeps": {
           "unknown": [],
@@ -414,11 +414,11 @@
     "get-duplicate-applications.ps1": {
       "path": "scripts/apps/get-duplicate-applications.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -437,9 +437,9 @@
               "line": 113
             }
           ],
+          "note": "Interactive patterns present but the script has environment detection.",
           "status": "pass",
-          "guarded": true,
-          "note": "Interactive patterns present but the script has environment detection."
+          "guarded": true
         },
         "moduleDeps": {
           "unknown": [],
@@ -454,11 +454,11 @@
     "restart-devices.ps1": {
       "path": "scripts/operational/restart-devices.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -482,9 +482,9 @@
               "line": 427
             }
           ],
+          "note": "Interactive patterns present but the script has environment detection.",
           "status": "pass",
-          "guarded": true,
-          "note": "Interactive patterns present but the script has environment detection."
+          "guarded": true
         },
         "moduleDeps": {
           "unknown": [],
@@ -499,11 +499,11 @@
     "sync-devices.ps1": {
       "path": "scripts/operational/sync-devices.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -522,9 +522,9 @@
               "line": 136
             }
           ],
+          "note": "Interactive patterns present but the script has environment detection.",
           "status": "pass",
-          "guarded": true,
-          "note": "Interactive patterns present but the script has environment detection."
+          "guarded": true
         },
         "moduleDeps": {
           "unknown": [],
@@ -539,11 +539,11 @@
     "wipe-devices.ps1": {
       "path": "scripts/operational/wipe-devices.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -567,9 +567,9 @@
               "line": 464
             }
           ],
+          "note": "Interactive patterns present but the script has environment detection.",
           "status": "pass",
-          "guarded": true,
-          "note": "Interactive patterns present but the script has environment detection."
+          "guarded": true
         },
         "moduleDeps": {
           "unknown": [],
@@ -584,11 +584,11 @@
     "get-device-compliance-report.ps1": {
       "path": "scripts/compliance/get-device-compliance-report.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -607,9 +607,9 @@
               "line": 110
             }
           ],
+          "note": "Interactive patterns present but the script has environment detection.",
           "status": "pass",
-          "guarded": true,
-          "note": "Interactive patterns present but the script has environment detection."
+          "guarded": true
         },
         "moduleDeps": {
           "unknown": [],
@@ -624,11 +624,11 @@
     "get-maa-compliance-report.ps1": {
       "path": "scripts/compliance/get-maa-compliance-report.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -647,9 +647,9 @@
               "line": 116
             }
           ],
+          "note": "Interactive patterns present but the script has environment detection.",
           "status": "pass",
-          "guarded": true,
-          "note": "Interactive patterns present but the script has environment detection."
+          "guarded": true
         },
         "moduleDeps": {
           "unknown": [],
@@ -662,11 +662,11 @@
     "backup-bitlocker-keys-to-keyvault.ps1": {
       "path": "scripts/security/backup-bitlocker-keys-to-keyvault.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -693,11 +693,11 @@
     "get-intune-role-assignments.ps1": {
       "path": "scripts/security/get-intune-role-assignments.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -716,9 +716,9 @@
               "line": 93
             }
           ],
+          "note": "Interactive patterns present but the script has environment detection.",
           "status": "pass",
-          "guarded": true,
-          "note": "Interactive patterns present but the script has environment detection."
+          "guarded": true
         },
         "moduleDeps": {
           "unknown": [],
@@ -731,11 +731,11 @@
     "rotate-bitlocker-keys.ps1": {
       "path": "scripts/security/rotate-bitlocker-keys.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -754,9 +754,9 @@
               "line": 104
             }
           ],
+          "note": "Interactive patterns present but the script has environment detection.",
           "status": "pass",
-          "guarded": true,
-          "note": "Interactive patterns present but the script has environment detection."
+          "guarded": true
         },
         "moduleDeps": {
           "unknown": [],
@@ -771,11 +771,11 @@
     "rotate-macos-laps-passwords.ps1": {
       "path": "scripts/security/rotate-macos-laps-passwords.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -799,9 +799,9 @@
               "line": 405
             }
           ],
+          "note": "Interactive patterns present but the script has environment detection.",
           "status": "pass",
-          "guarded": true,
-          "note": "Interactive patterns present but the script has environment detection."
+          "guarded": true
         },
         "moduleDeps": {
           "unknown": [],
@@ -816,11 +816,11 @@
     "check-apple-token-validity.ps1": {
       "path": "scripts/monitoring/check-apple-token-validity.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -839,9 +839,9 @@
               "line": 124
             }
           ],
+          "note": "Interactive patterns present but the script has environment detection.",
           "status": "pass",
-          "guarded": true,
-          "note": "Interactive patterns present but the script has environment detection."
+          "guarded": true
         },
         "moduleDeps": {
           "unknown": [],
@@ -856,11 +856,11 @@
     "check-bitlocker-keys.ps1": {
       "path": "scripts/monitoring/check-bitlocker-keys.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -879,9 +879,9 @@
               "line": 122
             }
           ],
+          "note": "Interactive patterns present but the script has environment detection.",
           "status": "pass",
-          "guarded": true,
-          "note": "Interactive patterns present but the script has environment detection."
+          "guarded": true
         },
         "moduleDeps": {
           "unknown": [],
@@ -896,11 +896,11 @@
     "check-filevault-keys.ps1": {
       "path": "scripts/monitoring/check-filevault-keys.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -919,9 +919,9 @@
               "line": 122
             }
           ],
+          "note": "Interactive patterns present but the script has environment detection.",
           "status": "pass",
-          "guarded": true,
-          "note": "Interactive patterns present but the script has environment detection."
+          "guarded": true
         },
         "moduleDeps": {
           "unknown": [],
@@ -936,11 +936,11 @@
     "check-policy-changes.ps1": {
       "path": "scripts/monitoring/check-policy-changes.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -959,9 +959,9 @@
               "line": 129
             }
           ],
+          "note": "Interactive patterns present but the script has environment detection.",
           "status": "pass",
-          "guarded": true,
-          "note": "Interactive patterns present but the script has environment detection."
+          "guarded": true
         },
         "moduleDeps": {
           "unknown": [],
@@ -976,11 +976,11 @@
     "check-unassigned-policies.ps1": {
       "path": "scripts/monitoring/check-unassigned-policies.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -999,9 +999,9 @@
               "line": 120
             }
           ],
+          "note": "Interactive patterns present but the script has environment detection.",
           "status": "pass",
-          "guarded": true,
-          "note": "Interactive patterns present but the script has environment detection."
+          "guarded": true
         },
         "moduleDeps": {
           "unknown": [],
@@ -1016,11 +1016,11 @@
     "get-endpoint-analytics-report.ps1": {
       "path": "scripts/monitoring/get-endpoint-analytics-report.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -1039,9 +1039,9 @@
               "line": 134
             }
           ],
+          "note": "Interactive patterns present but the script has environment detection.",
           "status": "pass",
-          "guarded": true,
-          "note": "Interactive patterns present but the script has environment detection."
+          "guarded": true
         },
         "moduleDeps": {
           "unknown": [],
@@ -1054,11 +1054,11 @@
     "get-intune-audit-logs.ps1": {
       "path": "scripts/monitoring/get-intune-audit-logs.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -1077,9 +1077,9 @@
               "line": 126
             }
           ],
+          "note": "Interactive patterns present but the script has environment detection.",
           "status": "pass",
-          "guarded": true,
-          "note": "Interactive patterns present but the script has environment detection."
+          "guarded": true
         },
         "moduleDeps": {
           "unknown": [],
@@ -1092,11 +1092,11 @@
     "app-deployment-failure-alert.ps1": {
       "path": "scripts/notification/app-deployment-failure-alert.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -1115,9 +1115,9 @@
               "line": 119
             }
           ],
+          "note": "Interactive patterns present but the script has environment detection.",
           "status": "pass",
-          "guarded": true,
-          "note": "Interactive patterns present but the script has environment detection."
+          "guarded": true
         },
         "moduleDeps": {
           "unknown": [],
@@ -1130,11 +1130,11 @@
     "apple-token-expiration-alert.ps1": {
       "path": "scripts/notification/apple-token-expiration-alert.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -1153,9 +1153,9 @@
               "line": 117
             }
           ],
+          "note": "Interactive patterns present but the script has environment detection.",
           "status": "pass",
-          "guarded": true,
-          "note": "Interactive patterns present but the script has environment detection."
+          "guarded": true
         },
         "moduleDeps": {
           "unknown": [],
@@ -1168,11 +1168,11 @@
     "device-compliance-drift-alert.ps1": {
       "path": "scripts/notification/device-compliance-drift-alert.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -1191,9 +1191,9 @@
               "line": 118
             }
           ],
+          "note": "Interactive patterns present but the script has environment detection.",
           "status": "pass",
-          "guarded": true,
-          "note": "Interactive patterns present but the script has environment detection."
+          "guarded": true
         },
         "moduleDeps": {
           "unknown": [],
@@ -1206,11 +1206,11 @@
     "maa-pending-requests-monitor.ps1": {
       "path": "scripts/notification/maa-pending-requests-monitor.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -1229,9 +1229,9 @@
               "line": 149
             }
           ],
+          "note": "Interactive patterns present but the script has environment detection.",
           "status": "pass",
-          "guarded": true,
-          "note": "Interactive patterns present but the script has environment detection."
+          "guarded": true
         },
         "moduleDeps": {
           "unknown": [],
@@ -1244,11 +1244,11 @@
     "stale-device-cleanup-alert.ps1": {
       "path": "scripts/notification/stale-device-cleanup-alert.ps1",
       "type": "PowerShell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "parse": {
-          "status": "pass",
-          "errors": []
+          "errors": [],
+          "status": "pass"
         },
         "lint": {
           "details": [],
@@ -1267,9 +1267,9 @@
               "line": 118
             }
           ],
+          "note": "Interactive patterns present but the script has environment detection.",
           "status": "pass",
-          "guarded": true,
-          "note": "Interactive patterns present but the script has environment detection."
+          "guarded": true
         },
         "moduleDeps": {
           "unknown": [],
@@ -1282,7 +1282,7 @@
     "check-applecare-warranty-status.sh": {
       "path": "scripts/monitoring/check-applecare-warranty-status.sh",
       "type": "Shell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "shellcheck": {
           "details": [],
@@ -1295,7 +1295,7 @@
     "check-available-msupdate-updates.sh": {
       "path": "scripts/monitoring/check-available-msupdate-updates.sh",
       "type": "Shell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "shellcheck": {
           "details": [],
@@ -1308,7 +1308,7 @@
     "check-msupdate-status.sh": {
       "path": "scripts/monitoring/check-msupdate-status.sh",
       "type": "Shell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "shellcheck": {
           "details": [],
@@ -1321,7 +1321,7 @@
     "check-network-requirements.sh": {
       "path": "scripts/monitoring/check-network-requirements.sh",
       "type": "Shell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "shellcheck": {
           "details": [],
@@ -1334,7 +1334,7 @@
     "check-xprotect-status.sh": {
       "path": "scripts/monitoring/check-xprotect-status.sh",
       "type": "Shell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "shellcheck": {
           "details": [],
@@ -1347,7 +1347,7 @@
     "last-reboot.sh": {
       "path": "scripts/monitoring/last-reboot.sh",
       "type": "Shell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "shellcheck": {
           "details": [],
@@ -1360,7 +1360,7 @@
     "local-admins.sh": {
       "path": "scripts/monitoring/local-admins.sh",
       "type": "Shell",
-      "lastTested": "2026-08-17T02:51:21Z",
+      "lastTested": "2026-08-18T02:45:53Z",
       "tests": {
         "shellcheck": {
           "details": [],
