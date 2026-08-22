@@ -1,10 +1,38 @@
 {
-  "variables": {
-    "logVerbose": false,
-    "logProgress": false,
-    "scriptUri": "https://raw.githubusercontent.com/dtewales/IntuneAutomation/main/scripts/apps/get-app-installation-status-report.ps1",
-    "runbookType": "PowerShell"
-  },
+  "resources": [
+    {
+      "location": "[parameters('location')]",
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "sku": {
+          "name": "Basic"
+        }
+      },
+      "type": "Microsoft.Automation/automationAccounts",
+      "apiVersion": "2023-11-01",
+      "name": "[parameters('automationAccountName')]"
+    },
+    {
+      "location": "[parameters('location')]",
+      "properties": {
+        "logVerbose": "[variables('logVerbose')]",
+        "description": "[parameters('runbookDescription')]",
+        "logProgress": "[variables('logProgress')]",
+        "publishContentLink": {
+          "uri": "[variables('scriptUri')]"
+        },
+        "runbookType": "[variables('runbookType')]"
+      },
+      "type": "Microsoft.Automation/automationAccounts/runbooks",
+      "apiVersion": "2023-11-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]"
+      ],
+      "name": "[concat(parameters('automationAccountName'), '/', parameters('runbookName'))]"
+    }
+  ],
   "parameters": {
     "automationAccountName": {
       "metadata": {
@@ -19,26 +47,29 @@
       },
       "type": "string"
     },
-    "location": {
-      "defaultValue": "[resourceGroup().location]",
-      "metadata": {
-        "description": "Location for the runbook deployment"
-      },
-      "type": "string"
-    },
     "runbookName": {
       "defaultValue": "get-app-installation-status-report",
       "metadata": {
         "description": "Name for the new runbook (will be created in the Automation Account)"
       },
       "type": "string"
+    },
+    "location": {
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": {
+        "description": "Location for the runbook deployment"
+      },
+      "type": "string"
     }
   },
+  "contentVersion": "1.0.0.0",
+  "variables": {
+    "scriptUri": "https://raw.githubusercontent.com/dtewales/IntuneAutomation/main/scripts/apps/get-app-installation-status-report.ps1",
+    "logVerbose": false,
+    "logProgress": false,
+    "runbookType": "PowerShell"
+  },
   "outputs": {
-    "scriptSourceUrl": {
-      "value": "[variables('scriptUri')]",
-      "type": "string"
-    },
     "runbookName": {
       "value": "[parameters('runbookName')]",
       "type": "string"
@@ -47,49 +78,18 @@
       "value": "[parameters('automationAccountName')]",
       "type": "string"
     },
-    "deploymentInstructions": {
-      "value": "Runbook created and published successfully! If the runbook content appears empty, manually import from the source URL provided in the outputs. Next steps: 1) Assign required Microsoft Graph permissions to the Automation Account's system-assigned Managed Identity, 2) Test the runbook.",
+    "scriptSourceUrl": {
+      "value": "[variables('scriptUri')]",
       "type": "string"
     },
     "runbookUrl": {
       "value": "[concat('https://portal.azure.com/#@', subscription().tenantId, '/resource/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Automation/automationAccounts/', parameters('automationAccountName'), '/runbooks/', parameters('runbookName'))]",
       "type": "string"
+    },
+    "deploymentInstructions": {
+      "value": "Runbook created and published successfully! If the runbook content appears empty, manually import from the source URL provided in the outputs. Next steps: 1) Assign required Microsoft Graph permissions to the Automation Account's system-assigned Managed Identity, 2) Test the runbook.",
+      "type": "string"
     }
   },
-  "contentVersion": "1.0.0.0",
-  "resources": [
-    {
-      "apiVersion": "2023-11-01",
-      "name": "[parameters('automationAccountName')]",
-      "identity": {
-        "type": "SystemAssigned"
-      },
-      "properties": {
-        "sku": {
-          "name": "Basic"
-        }
-      },
-      "type": "Microsoft.Automation/automationAccounts",
-      "location": "[parameters('location')]"
-    },
-    {
-      "apiVersion": "2023-11-01",
-      "name": "[concat(parameters('automationAccountName'), '/', parameters('runbookName'))]",
-      "properties": {
-        "logVerbose": "[variables('logVerbose')]",
-        "logProgress": "[variables('logProgress')]",
-        "publishContentLink": {
-          "uri": "[variables('scriptUri')]"
-        },
-        "description": "[parameters('runbookDescription')]",
-        "runbookType": "[variables('runbookType')]"
-      },
-      "type": "Microsoft.Automation/automationAccounts/runbooks",
-      "dependsOn": [
-        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]"
-      ],
-      "location": "[parameters('location')]"
-    }
-  ],
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#"
 }
