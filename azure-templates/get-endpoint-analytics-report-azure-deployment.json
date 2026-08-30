@@ -1,42 +1,22 @@
 {
-  "parameters": {
-    "runbookDescription": {
-      "metadata": {
-        "description": "Description of the runbook"
-      },
-      "defaultValue": "This script connects to Microsoft Graph API (beta) and retrieves Endpoint Analytics data from Intune.",
-      "type": "string"
-    },
-    "runbookName": {
-      "metadata": {
-        "description": "Name for the new runbook (will be created in the Automation Account)"
-      },
-      "defaultValue": "get-endpoint-analytics-report",
-      "type": "string"
-    },
-    "automationAccountName": {
-      "metadata": {
-        "description": "Name of the Azure Automation Account. If it does not exist in the selected resource group, it will be created with a system-assigned managed identity."
-      },
-      "type": "string"
-    },
-    "location": {
-      "metadata": {
-        "description": "Location for the runbook deployment"
-      },
-      "defaultValue": "[resourceGroup().location]",
-      "type": "string"
-    }
-  },
-  "contentVersion": "1.0.0.0",
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "variables": {
+    "logProgress": false,
+    "scriptUri": "https://raw.githubusercontent.com/dtewales/IntuneAutomation/main/scripts/monitoring/get-endpoint-analytics-report.ps1",
+    "logVerbose": false,
+    "runbookType": "PowerShell"
+  },
   "outputs": {
-    "runbookUrl": {
-      "value": "[concat('https://portal.azure.com/#@', subscription().tenantId, '/resource/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Automation/automationAccounts/', parameters('automationAccountName'), '/runbooks/', parameters('runbookName'))]",
+    "scriptSourceUrl": {
+      "value": "[variables('scriptUri')]",
       "type": "string"
     },
     "deploymentInstructions": {
       "value": "Runbook created and published successfully! If the runbook content appears empty, manually import from the source URL provided in the outputs. Next steps: 1) Assign required Microsoft Graph permissions to the Automation Account's system-assigned Managed Identity, 2) Test the runbook.",
+      "type": "string"
+    },
+    "runbookUrl": {
+      "value": "[concat('https://portal.azure.com/#@', subscription().tenantId, '/resource/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Automation/automationAccounts/', parameters('automationAccountName'), '/runbooks/', parameters('runbookName'))]",
       "type": "string"
     },
     "runbookName": {
@@ -46,27 +26,46 @@
     "automationAccountName": {
       "value": "[parameters('automationAccountName')]",
       "type": "string"
-    },
-    "scriptSourceUrl": {
-      "value": "[variables('scriptUri')]",
-      "type": "string"
     }
   },
-  "variables": {
-    "logProgress": false,
-    "runbookType": "PowerShell",
-    "scriptUri": "https://raw.githubusercontent.com/dtewales/IntuneAutomation/main/scripts/monitoring/get-endpoint-analytics-report.ps1",
-    "logVerbose": false
+  "parameters": {
+    "runbookDescription": {
+      "type": "string",
+      "metadata": {
+        "description": "Description of the runbook"
+      },
+      "defaultValue": "This script connects to Microsoft Graph API (beta) and retrieves Endpoint Analytics data from Intune."
+    },
+    "runbookName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name for the new runbook (will be created in the Automation Account)"
+      },
+      "defaultValue": "get-endpoint-analytics-report"
+    },
+    "automationAccountName": {
+      "metadata": {
+        "description": "Name of the Azure Automation Account. If it does not exist in the selected resource group, it will be created with a system-assigned managed identity."
+      },
+      "type": "string"
+    },
+    "location": {
+      "type": "string",
+      "metadata": {
+        "description": "Location for the runbook deployment"
+      },
+      "defaultValue": "[resourceGroup().location]"
+    }
   },
   "resources": [
     {
-      "type": "Microsoft.Automation/automationAccounts",
-      "location": "[parameters('location')]",
-      "name": "[parameters('automationAccountName')]",
       "identity": {
         "type": "SystemAssigned"
       },
+      "name": "[parameters('automationAccountName')]",
       "apiVersion": "2023-11-01",
+      "location": "[parameters('location')]",
+      "type": "Microsoft.Automation/automationAccounts",
       "properties": {
         "sku": {
           "name": "Basic"
@@ -74,22 +73,23 @@
       }
     },
     {
-      "type": "Microsoft.Automation/automationAccounts/runbooks",
-      "location": "[parameters('location')]",
-      "name": "[concat(parameters('automationAccountName'), '/', parameters('runbookName'))]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]"
-      ],
-      "apiVersion": "2023-11-01",
       "properties": {
         "logProgress": "[variables('logProgress')]",
         "publishContentLink": {
           "uri": "[variables('scriptUri')]"
         },
-        "runbookType": "[variables('runbookType')]",
         "description": "[parameters('runbookDescription')]",
-        "logVerbose": "[variables('logVerbose')]"
-      }
+        "logVerbose": "[variables('logVerbose')]",
+        "runbookType": "[variables('runbookType')]"
+      },
+      "name": "[concat(parameters('automationAccountName'), '/', parameters('runbookName'))]",
+      "apiVersion": "2023-11-01",
+      "location": "[parameters('location')]",
+      "type": "Microsoft.Automation/automationAccounts/runbooks",
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]"
+      ]
     }
-  ]
+  ],
+  "contentVersion": "1.0.0.0"
 }
