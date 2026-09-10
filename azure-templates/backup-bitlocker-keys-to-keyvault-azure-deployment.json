@@ -1,7 +1,7 @@
 {
   "outputs": {
-    "automationAccountName": {
-      "value": "[parameters('automationAccountName')]",
+    "scriptSourceUrl": {
+      "value": "[variables('scriptUri')]",
       "type": "string"
     },
     "deploymentInstructions": {
@@ -12,55 +12,28 @@
       "value": "[parameters('runbookName')]",
       "type": "string"
     },
+    "automationAccountName": {
+      "value": "[parameters('automationAccountName')]",
+      "type": "string"
+    },
     "runbookUrl": {
       "value": "[concat('https://portal.azure.com/#@', subscription().tenantId, '/resource/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Automation/automationAccounts/', parameters('automationAccountName'), '/runbooks/', parameters('runbookName'))]",
       "type": "string"
-    },
-    "scriptSourceUrl": {
-      "value": "[variables('scriptUri')]",
-      "type": "string"
     }
   },
-  "resources": [
-    {
-      "apiVersion": "2023-11-01",
-      "name": "[parameters('automationAccountName')]",
-      "identity": {
-        "type": "SystemAssigned"
-      },
-      "type": "Microsoft.Automation/automationAccounts",
-      "properties": {
-        "sku": {
-          "name": "Basic"
-        }
-      },
-      "location": "[parameters('location')]"
-    },
-    {
-      "apiVersion": "2023-11-01",
-      "properties": {
-        "runbookType": "[variables('runbookType')]",
-        "logProgress": "[variables('logProgress')]",
-        "logVerbose": "[variables('logVerbose')]",
-        "publishContentLink": {
-          "uri": "[variables('scriptUri')]"
-        },
-        "description": "[parameters('runbookDescription')]"
-      },
-      "name": "[concat(parameters('automationAccountName'), '/', parameters('runbookName'))]",
-      "type": "Microsoft.Automation/automationAccounts/runbooks",
-      "dependsOn": [
-        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]"
-      ],
-      "location": "[parameters('location')]"
-    }
-  ],
+  "variables": {
+    "runbookType": "PowerShell",
+    "logVerbose": false,
+    "scriptUri": "https://raw.githubusercontent.com/dtewales/IntuneAutomation/main/scripts/security/backup-bitlocker-keys-to-keyvault.ps1",
+    "logProgress": false
+  },
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "parameters": {
-    "location": {
+    "runbookName": {
+      "defaultValue": "backup-bitlocker-keys-to-keyvault",
       "metadata": {
-        "description": "Location for the runbook deployment"
+        "description": "Name for the new runbook (will be created in the Automation Account)"
       },
-      "defaultValue": "[resourceGroup().location]",
       "type": "string"
     },
     "automationAccountName": {
@@ -70,26 +43,53 @@
       "type": "string"
     },
     "runbookDescription": {
+      "defaultValue": "This script connects to Microsoft Graph API to retrieve BitLocker recovery keys for Windows devices,",
       "metadata": {
         "description": "Description of the runbook"
       },
-      "defaultValue": "This script connects to Microsoft Graph API to retrieve BitLocker recovery keys for Windows devices,",
       "type": "string"
     },
-    "runbookName": {
+    "location": {
+      "defaultValue": "[resourceGroup().location]",
       "metadata": {
-        "description": "Name for the new runbook (will be created in the Automation Account)"
+        "description": "Location for the runbook deployment"
       },
-      "defaultValue": "backup-bitlocker-keys-to-keyvault",
       "type": "string"
     }
   },
   "contentVersion": "1.0.0.0",
-  "variables": {
-    "runbookType": "PowerShell",
-    "logProgress": false,
-    "logVerbose": false,
-    "scriptUri": "https://raw.githubusercontent.com/dtewales/IntuneAutomation/main/scripts/security/backup-bitlocker-keys-to-keyvault.ps1"
-  },
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#"
+  "resources": [
+    {
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "name": "[parameters('automationAccountName')]",
+      "location": "[parameters('location')]",
+      "apiVersion": "2023-11-01",
+      "type": "Microsoft.Automation/automationAccounts",
+      "properties": {
+        "sku": {
+          "name": "Basic"
+        }
+      }
+    },
+    {
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]"
+      ],
+      "name": "[concat(parameters('automationAccountName'), '/', parameters('runbookName'))]",
+      "location": "[parameters('location')]",
+      "apiVersion": "2023-11-01",
+      "type": "Microsoft.Automation/automationAccounts/runbooks",
+      "properties": {
+        "runbookType": "[variables('runbookType')]",
+        "logVerbose": "[variables('logVerbose')]",
+        "description": "[parameters('runbookDescription')]",
+        "logProgress": "[variables('logProgress')]",
+        "publishContentLink": {
+          "uri": "[variables('scriptUri')]"
+        }
+      }
+    }
+  ]
 }
