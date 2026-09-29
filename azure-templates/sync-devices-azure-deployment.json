@@ -1,4 +1,6 @@
 {
+  "contentVersion": "1.0.0.0",
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "parameters": {
     "runbookName": {
       "defaultValue": "sync-devices",
@@ -15,10 +17,10 @@
       "type": "string"
     },
     "automationAccountName": {
-      "type": "string",
       "metadata": {
         "description": "Name of the Azure Automation Account. If it does not exist in the selected resource group, it will be created with a system-assigned managed identity."
-      }
+      },
+      "type": "string"
     },
     "runbookDescription": {
       "defaultValue": "This script connects to Microsoft Graph and triggers synchronization operations on targeted devices.",
@@ -28,14 +30,47 @@
       "type": "string"
     }
   },
-  "contentVersion": "1.0.0.0",
+  "resources": [
+    {
+      "apiVersion": "2023-11-01",
+      "type": "Microsoft.Automation/automationAccounts",
+      "location": "[parameters('location')]",
+      "name": "[parameters('automationAccountName')]",
+      "properties": {
+        "sku": {
+          "name": "Basic"
+        }
+      },
+      "identity": {
+        "type": "SystemAssigned"
+      }
+    },
+    {
+      "apiVersion": "2023-11-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]"
+      ],
+      "type": "Microsoft.Automation/automationAccounts/runbooks",
+      "location": "[parameters('location')]",
+      "name": "[concat(parameters('automationAccountName'), '/', parameters('runbookName'))]",
+      "properties": {
+        "logVerbose": "[variables('logVerbose')]",
+        "publishContentLink": {
+          "uri": "[variables('scriptUri')]"
+        },
+        "logProgress": "[variables('logProgress')]",
+        "runbookType": "[variables('runbookType')]",
+        "description": "[parameters('runbookDescription')]"
+      }
+    }
+  ],
   "outputs": {
     "runbookName": {
       "value": "[parameters('runbookName')]",
       "type": "string"
     },
-    "scriptSourceUrl": {
-      "value": "[variables('scriptUri')]",
+    "deploymentInstructions": {
+      "value": "Runbook created and published successfully! If the runbook content appears empty, manually import from the source URL provided in the outputs. Next steps: 1) Assign required Microsoft Graph permissions to the Automation Account's system-assigned Managed Identity, 2) Test the runbook.",
       "type": "string"
     },
     "runbookUrl": {
@@ -46,50 +81,15 @@
       "value": "[parameters('automationAccountName')]",
       "type": "string"
     },
-    "deploymentInstructions": {
-      "value": "Runbook created and published successfully! If the runbook content appears empty, manually import from the source URL provided in the outputs. Next steps: 1) Assign required Microsoft Graph permissions to the Automation Account's system-assigned Managed Identity, 2) Test the runbook.",
+    "scriptSourceUrl": {
+      "value": "[variables('scriptUri')]",
       "type": "string"
     }
   },
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "variables": {
     "logVerbose": false,
-    "runbookType": "PowerShell",
+    "scriptUri": "https://raw.githubusercontent.com/dtewales/IntuneAutomation/main/scripts/operational/sync-devices.ps1",
     "logProgress": false,
-    "scriptUri": "https://raw.githubusercontent.com/dtewales/IntuneAutomation/main/scripts/operational/sync-devices.ps1"
-  },
-  "resources": [
-    {
-      "identity": {
-        "type": "SystemAssigned"
-      },
-      "properties": {
-        "sku": {
-          "name": "Basic"
-        }
-      },
-      "type": "Microsoft.Automation/automationAccounts",
-      "location": "[parameters('location')]",
-      "apiVersion": "2023-11-01",
-      "name": "[parameters('automationAccountName')]"
-    },
-    {
-      "properties": {
-        "logVerbose": "[variables('logVerbose')]",
-        "publishContentLink": {
-          "uri": "[variables('scriptUri')]"
-        },
-        "runbookType": "[variables('runbookType')]",
-        "logProgress": "[variables('logProgress')]",
-        "description": "[parameters('runbookDescription')]"
-      },
-      "dependsOn": [
-        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]"
-      ],
-      "type": "Microsoft.Automation/automationAccounts/runbooks",
-      "location": "[parameters('location')]",
-      "apiVersion": "2023-11-01",
-      "name": "[concat(parameters('automationAccountName'), '/', parameters('runbookName'))]"
-    }
-  ]
+    "runbookType": "PowerShell"
+  }
 }
