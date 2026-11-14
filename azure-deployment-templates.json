@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-13T08:53:06Z",
+  "generated": "2026-11-14T08:15:56Z",
   "runtime": "PowerShell 7.4",
   "templates": {
     "cleanup-orphaned-apps": {
